@@ -10,6 +10,13 @@ export default [
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
   {
+    ignores: [
+      'coverage/**',
+      'dist/**',
+      "eslint.config.js",
+    ],
+  },
+  {
     files: [
       '**/*.{js,ts,tsx}',
     ],
