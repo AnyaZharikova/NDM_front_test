@@ -1,0 +1,25 @@
+name: check NDM_front
+on: push
+permissions:
+    contents: read
+    id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies 
+        run: make install
+
+      - name: Lint
+        run: make lint
+          
+      - name: Run tests
+        run: make test
+          
+      - name: Test & publish code coverage
+        uses: qltysh/qlty-action/coverage@v1
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/coverage-final.json
